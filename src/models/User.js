@@ -17,4 +17,4 @@ const schema = new mongoose.Schema({
 });
 
 global.User = global.User || mongoose.model('User',schema);
-module.exports = global.User;
+export default global.User;

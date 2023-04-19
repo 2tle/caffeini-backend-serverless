@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "crypto": "^1.0.1",
     "dotenv": "^16.0.3",
     "mongoose": "^7.0.4"
   },
