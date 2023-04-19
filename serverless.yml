@@ -1,11 +1,17 @@
 service: caffeini
 frameworkVersion: '3'
 
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
 provider:
   name: aws
   runtime: nodejs12.x
   stage: dev
   region: ap-northeast-2
+
+
 
 functions:
   #Auth.js
@@ -20,4 +26,4 @@ functions:
     events:
       - http:
           path: auth/local
-          method: post
+          method: get

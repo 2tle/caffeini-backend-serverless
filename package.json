@@ -1,5 +1,11 @@
 {
+  "type": "module",
   "dependencies": {
-    "mongoose": "^7.0.3"
+    "dotenv": "^16.0.3",
+    "mongoose": "^7.0.4"
+  },
+  "devDependencies": {
+    "serverless-dotenv-plugin": "^6.0.0",
+    "serverless-offline": "^12.0.4"
   }
 }

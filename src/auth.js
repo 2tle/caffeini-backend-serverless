@@ -1,10 +1,20 @@
-import * as res from "./shared/response";
+import res from "./shared/response.js";
+import db from "./shared/db.js";
 
-exports.createAccount = (event, ctx, cb) => {
+
+export function createAccount(event, ctx, cb)  {
     cb(null, res.createResponse(200, res.onlyMsgResponse("CreateAccount")));
 }
-
-exports.login = (event, ctx, cb) => {
+export function login(event,ctx,cb) {
+    db.connect()
     cb(null, res.createResponse(200, res.onlyMsgResponse("Login")));
 }
-
+// module.exports = {
+//     createAccount: (event, ctx, cb) => {
+//         cb(null, res.createResponse(200, res.onlyMsgResponse("CreateAccount")));
+//     },
+//     login: (event, ctx, cb) => {
+//         db.connect()
+//         cb(null, res.createResponse(200, res.onlyMsgResponse("Login")));
+//     }
+// }

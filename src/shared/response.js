@@ -1,8 +1,9 @@
-exports.createResponse = (status, body) => ({
-    statusCode: status,
-    body: JSON.stringify(body)
-});
-
-exports.onlyMsgResponse = (msg) => ({
-    message: msg.toString()
-});
+export default {
+    createResponse: (status, body) => ({
+        statusCode: status,
+        body: JSON.stringify(body)
+    }),
+    onlyMsgResponse: (msg) => ({
+        message: msg.toString()
+    })
+}
