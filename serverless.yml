@@ -31,10 +31,18 @@ functions:
       - http:
           path: auth/local
           method: post
-  test:
-    handler: src/auth.test
+  updateUserInfo:
+    handler: src/auth.updateUserInfo
     events:
       - http:
-          path: auth/test
-          method: get
+          path: user/info
+          method: put
           authorizer: auth
+
+#  test:
+#    handler: src/auth.test
+#    events:
+#      - http:
+#          path: auth/test
+#          method: get
+#          authorizer: auth

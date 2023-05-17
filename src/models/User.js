@@ -13,6 +13,18 @@ const schema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    height: {
+        type: Number,
+        default: 1
+    },
+    weight: {
+        type: Number,
+        default: 1
+    },
+    age: {
+        type: Number,
+        default:20
     }
 });
 

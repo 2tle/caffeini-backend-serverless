@@ -4,6 +4,7 @@ import User from "./models/User.js";
 import querystring from "querystring";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
+import { getIdByToken} from "./shared/jwt.js"
 
 
 
@@ -49,6 +50,21 @@ export function login(event,ctx,cb) {
     ).catch(e => cb(e))
 }
 
-export function test(event,ctx,cb) {
-    cb(null, res.createResponse(200, res.onlyMsgResponse("dsaf")));
+export function updateUserInfo(event, ctx, cb) {
+    ctx.callbackWaitsForEmptyEventLoop=false;
+    const body = querystring.parse(event.body);
+    console.log(body)
+    const userId = getIdByToken(event.headers.authorization.split(" ")[1])
+    db.connect().then(
+        () => {
+            let obj = {}
+            if(body.height) obj['height'] = body.height;
+            if(body.weight) obj['weight'] = body.weight;
+            if(body.age) obj['age'] = body.age;
+
+            return User.updateOne({_id: userId}, obj);
+        }
+    ).then( updated => {
+        cb(null, res.createResponse(200))
+    }).catch(e => cb(e))
 }
