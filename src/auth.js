@@ -3,6 +3,7 @@ import db from "./shared/db.js";
 import User from "./models/User.js";
 import querystring from "querystring";
 import crypto from "crypto";
+import jwt from "jsonwebtoken";
 
 export function createAccount(event, ctx, cb)  {
     ctx.callbackWaitsForEmptyEventLoop=false;
@@ -18,11 +19,30 @@ export function createAccount(event, ctx, cb)  {
         }
     ).then(
         user => {
-            cb(null, res.createResponse(200, res.onlyMsgResponse("Successfully Created")));
+            cb(null, res.createResponse(200, res.onlyMsgResponse(res.constant.RGS)));
         }
     ).catch(e => cb(e) )
 }
 export function login(event,ctx,cb) {
-    db.connect()
-    cb(null, res.createResponse(200, res.onlyMsgResponse("Login")));
+    ctx.callbackWaitsForEmptyEventLoop=false;
+    const body = querystring.parse(event.body);
+    db.connect().then(
+        () => {
+            return User.findOne({email: body.email, password:crypto.createHash('sha512').update(body.password.toString()).digest('base64')})
+        }
+    ).then(
+        user => {
+            if(!user) cb(null, res.createResponse(400, res.onlyMsgResponse(res.constant.UNF)));
+            const token = jwt.sign({
+                _id: user._id,
+                email: user.email,
+                username: user.username
+            }, process.env.JWT_SECRET, {
+                expiresIn: '12h',
+                subject:'userinfo',
+                issuer: 'Caffeini Backend Application'
+            });
+            cb(null, res.createResponse(200, res.tokenResponse(token)));
+        }
+    ).catch(e => cb(e))
 }

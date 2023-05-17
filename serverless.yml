@@ -26,4 +26,4 @@ functions:
     events:
       - http:
           path: auth/local
-          method: get
+          method: post
