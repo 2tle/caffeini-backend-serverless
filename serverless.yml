@@ -5,6 +5,7 @@ frameworkVersion: '3'
 plugins:
   - serverless-dotenv-plugin
   - serverless-offline
+  #- serverless-webpack
 provider:
   name: aws
   runtime: nodejs12.x
@@ -14,6 +15,9 @@ provider:
 
 
 functions:
+  #Jwt.js
+  auth:
+    handler: src/jwt.auth
   #Auth.js
   createAccount:
     handler: src/auth.createAccount
@@ -27,3 +31,10 @@ functions:
       - http:
           path: auth/local
           method: post
+  test:
+    handler: src/auth.test
+    events:
+      - http:
+          path: auth/test
+          method: get
+          authorizer: auth

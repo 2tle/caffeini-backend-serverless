@@ -5,6 +5,8 @@ import querystring from "querystring";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
 
+
+
 export function createAccount(event, ctx, cb)  {
     ctx.callbackWaitsForEmptyEventLoop=false;
     const body = querystring.parse(event.body);
@@ -45,4 +47,8 @@ export function login(event,ctx,cb) {
             cb(null, res.createResponse(200, res.tokenResponse(token)));
         }
     ).catch(e => cb(e))
+}
+
+export function test(event,ctx,cb) {
+    cb(null, res.createResponse(200, res.onlyMsgResponse("dsaf")));
 }
