@@ -6,7 +6,13 @@ import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import { getIdByToken} from "./shared/jwt.js"
 
-
+// todo
+// 카페인 모델 설계 -> Ok
+// 오늘 마신 카페인 추가 -> OK
+// 오늘 마신 카페인 정보 가져오기
+// 기간 내 마신 카페인 정보 가져오기
+// 적정 카페인 계산기
+// 카페인 초과/미달 여부 알려주는 api
 
 export function createAccount(event, ctx, cb)  {
     ctx.callbackWaitsForEmptyEventLoop=false;
@@ -68,3 +74,4 @@ export function updateUserInfo(event, ctx, cb) {
         cb(null, res.createResponse(200))
     }).catch(e => cb(e))
 }
+

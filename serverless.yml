@@ -38,6 +38,14 @@ functions:
           path: user/info
           method: put
           authorizer: auth
+  #Caffeine.js
+  addCaffeine:
+    handler: src/caffeine.addCaffeineDrink
+    events:
+      - http:
+          path: caffeine
+          method: post
+          authorizer: auth
 
 #  test:
 #    handler: src/auth.test
