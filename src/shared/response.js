@@ -13,5 +13,8 @@ export default {
     }),
     tokenResponse: (token) => ({
         token: token.toString()
+    }),
+    listResponse: (list) => ({
+        datas: list
     })
 }

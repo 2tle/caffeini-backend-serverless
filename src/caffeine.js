@@ -35,11 +35,11 @@ export function getTodayCaffeines(event, ctx, cb) {
     const userId = getIdByToken(event.headers.authorization.split(" ")[1])
     db.connect().then(
         () => {
-            return Caffeine.find({uid: userId, date: tz.format("YYYY-MM-DD")});
+            return Caffeine.find({uid: userId, date: tz.format("YYYY-MM-DD")},{_id:0,__v:0});
         }
     ).then(
         caffeines => {
-
+            cb(null, res.createResponse(200, res.listResponse(caffeines)));
         }
     )
 
