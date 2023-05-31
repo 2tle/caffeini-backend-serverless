@@ -16,5 +16,8 @@ export default {
     }),
     listResponse: (list) => ({
         datas: list
+    }),
+    amountResponse: (amount) => ({
+        amount: amount
     })
 }

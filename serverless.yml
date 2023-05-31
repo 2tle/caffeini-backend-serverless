@@ -46,11 +46,25 @@ functions:
           path: caffeine
           method: post
           authorizer: auth
+  getTodayCaffeine:
+    handler: src/caffeine.getTodayCaffeines
+    events:
+      - http:
+          path: caffeine/today
+          method: get
+          authorizer: auth
+  getCaffeinePeriod:
+    handler: src/caffeine.getCaffeinesByPeriod
+    events:
+      - http:
+          path: caffeine/period
+          method: get
+          authorizer: auth
+  calcRecommendAmount:
+    handler: src/caffeine.calcRecommendAmount
+    events:
+      - http:
+          path: caffeine/recommend
+          method: get
+          authorizer: auth
 
-#  test:
-#    handler: src/auth.test
-#    events:
-#      - http:
-#          path: auth/test
-#          method: get
-#          authorizer: auth
