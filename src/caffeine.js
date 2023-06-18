@@ -36,7 +36,7 @@ export function getTodayCaffeines(event, ctx, cb) {
     const userId = getIdByToken(event.headers.authorization.split(" ")[1])
     db.connect().then(
         () => {
-            return Caffeine.find({uid: userId, date: tz.format("YYYYMMDD")},{_id:0,__v:0});
+            return Caffeine.find({uid: userId, date: tz.format("YYYY-MM-DD")},{_id:0,__v:0});
         }
     ).then(
         caffeines => {
@@ -72,7 +72,7 @@ export function calcRecommendAmount(event, ctx, cb) {
     ).then(
         user => {
             let amount = (user.age < 20) ? 400 : user.weight * 2.5;
-            return cb(null, res.createResponse(200, res.amountResponse(amount)));
+            return cb(null, res.createResponse(200, res.amountResponse(user.username,amount)));
         }
     )
 }

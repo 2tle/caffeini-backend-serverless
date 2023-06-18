@@ -17,7 +17,8 @@ export default {
     listResponse: (list) => ({
         datas: list
     }),
-    amountResponse: (amount) => ({
+    amountResponse: (username, amount) => ({
+        username: username,
         amount: amount
     })
 }
