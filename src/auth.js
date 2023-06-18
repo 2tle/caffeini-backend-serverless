@@ -21,7 +21,10 @@ export function createAccount(event, ctx, cb)  {
             const user = new User({
                 username: body.username,
                 email: body.email,
-                password: crypto.createHash('sha512').update(body.password.toString()).digest('base64')
+                password: crypto.createHash('sha512').update(body.password.toString()).digest('base64'),
+                height: Number(body.height),
+                weight: Number(body.weight),
+                age: Number(body.age)
             });
             return user.save();
         }
