@@ -15,7 +15,8 @@ import { getIdByToken} from "./shared/jwt.js"
 
 export function createAccount(event, ctx, cb)  {
     ctx.callbackWaitsForEmptyEventLoop=false;
-    const body = querystring.parse(event.body);
+    const body = JSON.parse(event.body);
+    console.log(body);
     db.connect().then(
         () => {
             const user = new User({
@@ -36,7 +37,7 @@ export function createAccount(event, ctx, cb)  {
 }
 export function login(event,ctx,cb) {
     ctx.callbackWaitsForEmptyEventLoop=false;
-    const body = querystring.parse(event.body);
+    const body = JSON.parse(event.body);
     db.connect().then(
         () => {
             return User.findOne({email: body.email, password:crypto.createHash('sha512').update(body.password.toString()).digest('base64')})
@@ -60,7 +61,7 @@ export function login(event,ctx,cb) {
 
 export function updateUserInfo(event, ctx, cb) {
     ctx.callbackWaitsForEmptyEventLoop=false;
-    const body = querystring.parse(event.body);
+    const body = JSON.parse(event.body);
     console.log(body)
     const userId = getIdByToken(event.headers.authorization.split(" ")[1])
     db.connect().then(

@@ -2,8 +2,7 @@ import mongoose from "mongoose";
 const schema = new mongoose.Schema({
     uid: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     date: {
         type: String, /* yyyyMMdd */
@@ -18,3 +17,7 @@ const schema = new mongoose.Schema({
         required: true
     }
 });
+
+
+global.Caffeine = global.Caffeine || mongoose.model('Caffeine',schema);
+export default global.Caffeine;

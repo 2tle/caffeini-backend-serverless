@@ -15,7 +15,7 @@ export default {
         token: token.toString()
     }),
     listResponse: (list) => ({
-        datas: list
+        lists: list
     }),
     amountResponse: (username, amount) => ({
         username: username,
